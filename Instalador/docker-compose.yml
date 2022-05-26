@@ -1,0 +1,71 @@
+version: "2"
+
+services:
+
+  apiback:
+    image: mesquitadev/apiback:v1
+    container_name: apiback
+    networks:
+      - backend
+    ports:
+      - 5000:5000
+    depends_on:
+      - mongodb
+      - eyetechfront
+      - stream
+    volumes:
+      - /EytechPath/uploads/veiculos:/app/uploads/veiculos
+      
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    networks:
+      - backend
+    volumes:
+      - /EytechPath/DB/:/data/db
+    ports:
+      - '27017:27017'
+
+  eyetechfront:   
+    image: mesquitadev/eyefront:v1
+    container_name: eyetechfront
+    networks:
+      - backend
+    ports:
+      - 80:3000
+   
+  stream:   
+    container_name: stream
+    image: mesquitadev/eyestream:v2
+    depends_on:
+      - mongodb
+    networks:
+      - backend
+    ports:
+      - 9999:9999
+      - 9998:9998
+      - 9997:9997
+      - 9996:9996
+      - 9995:9995
+   
+  alpr:   
+    container_name: alpr
+    image: mesquitadev/eyealpr:v2
+    depends_on:
+      - mongodb
+    environment:
+      PYTHONALPR: /app/alpr/main.py
+      PATHALPR: /app/alpr/
+    ports:
+      - 3000:3000
+    volumes:
+      - /EytechPath/uploads/camera:/app/uploads/camera
+      - /EytechPath/uploads/imagensprocessadas:/app/uploads/imagensprocessadas
+      - /EytechPath/uploads/placas:/app/uploads/placas
+    networks:
+      - backend
+
+networks:
+ backend:
+  driver: bridge
+

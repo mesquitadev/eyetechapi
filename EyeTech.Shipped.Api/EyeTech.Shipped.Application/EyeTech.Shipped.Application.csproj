@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EyeTech.Shipped.Domain\EyeTech.Shipped.Domain.csproj" />
+    <ProjectReference Include="..\EyeTech.Shipped.Infra\EyeTech.Shipped.Infra.csproj" />
+  </ItemGroup>
+
+</Project>

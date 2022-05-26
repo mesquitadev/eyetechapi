@@ -1,0 +1,21 @@
+﻿using System;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+
+namespace EyeTech.Shipped.Domain.DbEntity.Ambiente
+{
+    public class Visitante
+    {
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
+        public string Nome { get; set; }
+        public string Telefone { get; set; }
+        public string ApartamentoId { get; set; }
+        public string ClienteId { get; set; }
+        public Veiculo Veiculo { get; set; }
+        public bool Motorizado { get; set; }
+        public bool Enviado { get; set; }
+        public DateTime? DataEntrada { get; set; }
+        public DateTime? DataSaida { get; set; }
+    }
+}

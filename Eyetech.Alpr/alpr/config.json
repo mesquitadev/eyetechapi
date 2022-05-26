@@ -1,0 +1,5 @@
+{
+  "Api": "http://apiback:5000/api/",
+  "TempoParada": 60,
+  "RegistraVeiculo": "RegistraEntrada"
+}
